@@ -23,7 +23,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const res = await api.post("/register", form);
+      const res = await api.post("/auth/register", form);
       alert(res.data.message);
       navigate("/login")
 
