@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "../services/Api";
-import { getToken } from "../services/auth";
+import { getToken } from "../services/Auth.js";
 import html2pdf from "html2pdf.js";
 
 const PreviewResume = () => {
