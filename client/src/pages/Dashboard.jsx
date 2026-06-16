@@ -1,10 +1,9 @@
 import React from "react";
-import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
-import { getUser } from "../services/auth";
+import { getUser } from "../services/Auth.js";
 
 const Dashboard = () => {
-  const user = getUser();
+  const user = getUser() || { name: "User" };
   return (
     <>
       <h2 className="text-2xl text-blue-500 text-center font-bold">

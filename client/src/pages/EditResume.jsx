@@ -197,9 +197,10 @@ const EditResume = () => {
     setSaving(true);
 
     try {
+      const token = getToken();
       const res = await API.put(`/resume/${id}`, form, {
         headers: {
-          Authorization: getToken(),
+          Authorization: token ? `Bearer ${token}` : "",
         },
       });
 

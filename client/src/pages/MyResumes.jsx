@@ -23,10 +23,11 @@ const MyResumes = () => {
 
   const fetchResumes = async () => {
     try {
+      const token = getToken();
       const res = await API.get("/resume/my", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: getToken(),
+          Authorization: token ? `Bearer ${token}` : "",
         },
       });
 
@@ -45,9 +46,10 @@ const MyResumes = () => {
     if (!confirmDelete) return;
 
     try {
+      const token = getToken();
       await API.delete(`/resume/delete/${id}`, {
         headers: {
-          Authorization: getToken(),
+          Authorization: token ? `Bearer ${token}` : "",
         },
       });
 
@@ -130,7 +132,7 @@ const MyResumes = () => {
 
                 <div className="mt-4">
                   <Link
-                    to={`/resume/${resume._id}`}
+                    to={`/resume-preview/${resume._id}`}
                     className="block text-center bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded text-sm"
                   >
                     View Resume

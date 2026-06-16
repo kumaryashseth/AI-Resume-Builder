@@ -46,21 +46,20 @@ const CreateResume = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
-    const token=getToken();
+    const token = getToken();
 
     try {
-      const res = await api.post("/resume/create", form,{
+      const res = await api.post("/resume/create", form, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: token,
+          Authorization: token ? `Bearer ${token}` : "",
         },
       });
 
       toast.success(res.data.message);
       navigate("/dashboard");
     } catch (error) {
-      toast.error(error || "Something went wrong");
+      toast.error(error.response?.data?.message || "Something went wrong");
     }
   };
 
@@ -72,6 +71,7 @@ const CreateResume = () => {
         <input
           type="text"
           name="name"
+          value={form.name}
           onChange={handleChange}
           placeholder="Enter Full Name"
           className="border p-3 w-full mb-4"
@@ -80,6 +80,7 @@ const CreateResume = () => {
         <input
           type="email"
           name="email"
+          value={form.email}
           onChange={handleChange}
           placeholder="Enter Email"
           className="border p-3 w-full mb-4"
@@ -88,17 +89,18 @@ const CreateResume = () => {
         <input
           type="text"
           name="phone"
+          value={form.phone}
           onChange={handleChange}
           placeholder="Enter Phone Number"
           className="border p-3 w-full mb-4"
         />
 
-        <input
-          type="text"
+        <textarea
           name="summary"
+          value={form.summary}
           onChange={handleChange}
           placeholder="Enter Summary"
-          row="4"
+          rows="4"
           className="border p-3 w-full mb-4"
         />
 

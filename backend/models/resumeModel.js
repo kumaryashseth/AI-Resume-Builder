@@ -6,7 +6,7 @@ const resumeSchema = new mongoose.Schema(
     type:String,
     required:true
   },
-  fullName:String,
+  name:String,
   email:String,
   phone:String,
   summary:String,
